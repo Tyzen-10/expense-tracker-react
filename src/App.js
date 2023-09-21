@@ -24,7 +24,7 @@ function App() {
   return (
     <div>
       <h2>Expense Tracker APP</h2>
-      <h3>Part of tutorial.</h3>
+      <h3>Part of React tutorial.</h3>
       <ExpenseItem
         title={expenses[0].title}
         amount={expenses[0].amount}
