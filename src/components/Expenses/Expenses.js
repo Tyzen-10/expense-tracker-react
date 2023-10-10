@@ -1,8 +1,8 @@
 import { useState } from "react";
-import ExpenseItem from "./ExpenseItem";
 import Card from "../UI/Card";
 import "./Expenses.css";
 import ExpenseFilter from "./ExpensesFilter";
+import ExpensesList from "./ExpensesList";
 const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState("2020");
   const filterChangeHandler = (selectedYear) => {
@@ -16,19 +16,7 @@ const Expenses = (props) => {
     (subexp) => subexp.date.getFullYear().toString() === filteredYear
   );
   console.log(subExpenses);
-  //conditional rendering
-  let expensesContent = <p style={{ color: "white" }}>No Expenses Found</p>;
-  if(subExpenses.length>0){
-    expensesContent = subExpenses.map((expense) => (
-      <ExpenseItem
-        key={expense.id}
-        title={expense.title}
-        amount={expense.amount}
-        date={expense.date}
-      ></ExpenseItem>
-    ))
-  }
-  //end of conditional rendering.
+  
   return (
     //also changed props.expenses.map to subExpenses.map
     <div>
@@ -37,7 +25,7 @@ const Expenses = (props) => {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-        {expensesContent}
+        <ExpensesList items = {subExpenses}></ExpensesList>
       </Card>
     </div>
   );
