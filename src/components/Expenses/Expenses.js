@@ -9,12 +9,26 @@ const Expenses = (props) => {
     console.log("inside Expenses.js");
     console.log(selectedYear);
     setFilteredYear(selectedYear);
-    
   };
   //Assignment code
   //sub expenses array filter
-  const subExpenses = props.expenses.filter((subexp)=>subexp.date.getFullYear().toString()=== filteredYear)
-  console.log(subExpenses)
+  const subExpenses = props.expenses.filter(
+    (subexp) => subexp.date.getFullYear().toString() === filteredYear
+  );
+  console.log(subExpenses);
+  //conditional rendering
+  let expensesContent = <p style={{ color: "white" }}>No Expenses Found</p>;
+  if(subExpenses.length>0){
+    expensesContent = subExpenses.map((expense) => (
+      <ExpenseItem
+        key={expense.id}
+        title={expense.title}
+        amount={expense.amount}
+        date={expense.date}
+      ></ExpenseItem>
+    ))
+  }
+  //end of conditional rendering.
   return (
     //also changed props.expenses.map to subExpenses.map
     <div>
@@ -23,14 +37,7 @@ const Expenses = (props) => {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-        {subExpenses.map((expense) => (
-          <ExpenseItem
-            key = {expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          ></ExpenseItem>
-        ))}
+        {expensesContent}
       </Card>
     </div>
   );
