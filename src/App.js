@@ -1,6 +1,7 @@
 import NewExpense from "./components/NewExpense/NewExpense";
 import Expenses from "./components/Expenses/Expenses";
 import { useState } from "react";
+import "./App.css"
 const DUMMY_EXPENSES = [
   {
     id: "e1",
@@ -32,7 +33,7 @@ function App() {
   
   return (
     <div>
-      <h2>Expense Tracker APP</h2>
+      <h1 style={{textAlign: 'center'}}>Expense Tracker APP</h1>
       <NewExpense onAddExpense = {addExpenseHandler}></NewExpense>
       <Expenses expenses = {expenses}></Expenses>
     </div>
